@@ -1,3 +1,6 @@
 [submodule "egglog"]
 	path = egglog/egglog
 	url = git@github.com:egraphs-good/egglog
+[submodule "egglog/rust-egglog"]
+	path = egglog/rust-egglog
+	url = git@github.com:egraphs-good/egglog
