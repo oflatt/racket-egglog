@@ -1,4 +1,4 @@
-#lang racket-egglog
+#lang egglog
 
 (define a 1)
 
