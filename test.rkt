@@ -1,3 +1,5 @@
 #lang reader "main.rkt"
 
-(println "hello")
+(define a 1)
+
+(extract a)
