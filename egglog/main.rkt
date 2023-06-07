@@ -2,6 +2,7 @@
  
 (module reader racket
   (require syntax/strip-context)
+  (require racket/runtime-path)
  
   (provide (rename-out [literal-read read]
                        [literal-read-syntax read-syntax]))
@@ -19,14 +20,15 @@
         (cons (read port)
               (read-lines port))]))
 
+  (define-runtime-path egglog-binary 
+    "rust-egglog/target/release/egg-smol")
+
  
   (define (literal-read-syntax src in)
-    (with-syntax ([src-lines (read-lines in)])
+    (with-syntax ([src-lines (read-lines in)]
+                  [egglog-binary egglog-binary])
       (strip-context
-       #`(module anything racket
-           (require racket/runtime-path)
-        (define-runtime-path egglog-binary
-  "rust-egglog/target/release/egg-smol")
+       #`(module egglog racket
      (define (run-egglog lines)
       (define-values (egglog-process egglog-output egglog-in err)
       (subprocess (current-output-port) #f (current-error-port) egglog-binary))
