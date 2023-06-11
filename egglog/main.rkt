@@ -26,7 +26,7 @@
        (begin
           (when (not (unbox egglog-process))
             (define-values (new-egglog-process new-egglog-output new-egglog-in new-egglog-err)
-            (subprocess (current-output-port) #f #f egglog-binary))
+            (subprocess #f #f #f egglog-binary))
             (set-box! egglog-process new-egglog-process)
             (set-box! egglog-in new-egglog-in)
             (set-box! egglog-out new-egglog-err)
