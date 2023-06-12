@@ -21,6 +21,9 @@
                   (loop))))
   (flush-output port))
 
+(define-runtime-path svg-path
+  "temp.svg")
+
 (define-macro (top-interaction . CODE)
   #'(#%top-interaction .
        (begin
@@ -31,11 +34,11 @@
             (set-box! egglog-in new-egglog-in)
             (set-box! egglog-out new-egglog-err)
             
-            (displayln `(set-option interactive_mode 1) (unbox egglog-in))
+            (writeln `(set-option interactive_mode 1) (unbox egglog-in))
             (flush-output (unbox egglog-in))
             (read-egglog-output (open-output-nowhere))
           )
-          (displayln (quote CODE) (unbox egglog-in))
+          (writeln (quote CODE) (unbox egglog-in))
           (flush-output (unbox egglog-in))
           (read-egglog-output (current-output-port))
        )))
