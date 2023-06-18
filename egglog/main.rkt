@@ -19,6 +19,7 @@
             (when (not (equal? line "(done)"))
                   (displayln line port)
                   (loop))))
+  (displayln "" port)
   (flush-output port))
 
 (define-runtime-path svg-path
